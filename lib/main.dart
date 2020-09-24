@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'description_place.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter App',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
@@ -18,13 +19,11 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Hola Mundo"),
+          title: Text("My Flutter App"),
         ),
-        body: Center(
-          child: Text("Hola Mundo!!"),
-        ),
-      )//MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        body: new DescriptionPlace(),
+        )
+      );//MyHomePage(title: 'Flutter Demo Home Page'),
   }
 }
 
