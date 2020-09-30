@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'description_place.dart';
 import 'review_list.dart';//Importamos nuestra clase
+import 'gradient_back.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,11 +22,21 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text("My Flutter App"),
-        ),
+        ),*/
         //body: new DescriptionPlace("Bahamas", 4, descriptionDummy),
-        body: ReviewList(),//Mostramos nuestra lista de Review
+        body: Stack(//un Stack permite colocar un elemento encima de otro
+          children: [//En Stack tambien agregamos hijos
+            ListView(//Enviamos nuestro contenido en forma de lista para que podamos utilizar el scroll
+              children: [//Agrupamos los elementos
+                DescriptionPlace("Bahamas", 4, descriptionDummy),
+                ReviewList()
+              ],
+            ),
+            GradientBack()//Mandamos a llamar al metodo de la clase GradientBack
+          ],
+        ),
         )
       );//MyHomePage(title: 'Flutter Demo Home Page'),
   }
