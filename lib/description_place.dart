@@ -51,6 +51,8 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
+
+    //Witget del Titulo
     final title_stars = Row(
       children: [
         Container(
@@ -63,6 +65,8 @@ class DescriptionPlace extends StatelessWidget {
           child: Text(
             namePlace,
             style: TextStyle(
+              //Utilizamos Google Fonts en pubspec.yaml para poder utilizar fontFamily
+              fontFamily: "Lato",
                 fontSize: 30.0,
                 fontWeight: FontWeight.w900
             ),
@@ -93,6 +97,8 @@ class DescriptionPlace extends StatelessWidget {
         //Agregamos el texto para que se muetres en pantalla
         descriptionPlace,
       style: TextStyle(
+        //Utilizamos Google Fonts en pubspec.yaml para poder utilizar fontFamily
+        fontFamily: "Lato",
         fontSize: 12.0,
         fontWeight: FontWeight.bold,
         color: Color(0xFF56575a)
