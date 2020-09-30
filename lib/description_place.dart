@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
 
 class DescriptionPlace extends StatelessWidget {
+
+  String namePlace;//Nombre del sitio
+  int stars;//Numero de estrellas para el sitio
+  String descriptionPlace;//Descripcion del sitio
+
+  //Contructor en Dart
+  DescriptionPlace(this.namePlace, this.stars, this.descriptionPlace );
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
 
+    // Widget para representar las estrellas vacias
+    final star_border = Container(
+      margin: EdgeInsets.only(
+          top: 323.0,//Posision en la pantalla
+          right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_border,
+        color: Color(0xFFF2C611),
+      ),
+    );
+
+    // Widget para representar las estrellas a la mitad
+    final star_half = Container(
+      margin: EdgeInsets.only(
+          top: 323.0,//Posision en la pantalla
+          right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_half,
+        color: Color(0xFFF2C611),
+      ),
+    );
+
+    // Widget para reprecentas las estrellas llenas
     final star = Container(
       margin: EdgeInsets.only(
-        top: 323.0,
+        top: 323.0,//Posision en la pantalla
         right: 3.0
       ),
 
@@ -27,7 +61,7 @@ class DescriptionPlace extends StatelessWidget {
           ),
 
           child: Text(
-            "Duwili Ella",
+            namePlace,
             style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.w900
@@ -39,33 +73,34 @@ class DescriptionPlace extends StatelessWidget {
 
         Row(
           children: [
+            star,//Iconos de estrellas
             star,
             star,
             star,
-            star,
-            star
+            star_border
           ],
         )
       ],
     );
-
+    //Creamo el contenido del texto
     final description = Container(
       margin: EdgeInsets.only(
           top: 20.0,
           right: 20.0,
           left: 20.0
       ),
-
       child: Text(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor massa augue, sit amet tristique erat aliquam nec. Fusce dui lectus, ullamcorper quis euismod id, convallis non dui.",
+        //Agregamos el texto para que se muetres en pantalla
+        descriptionPlace,
       style: TextStyle(
-        fontSize: 16.0,
-        fontWeight: FontWeight.w300,
+        fontSize: 12.0,
+        fontWeight: FontWeight.bold,
         color: Color(0xFF56575a)
       ),
       ),
     );
 
+    //Pare poder retornar lo almacenamos como una columna
     return Column(
       children: [
         title_stars,
