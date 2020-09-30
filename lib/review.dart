@@ -16,6 +16,51 @@ class Review extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // Widget para representar las estrellas vacias
+    final star_border = Container(
+      margin: EdgeInsets.only(
+          //top: 323.0,//Posision en la pantalla
+          left: 3.0,
+          //right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_border,
+        color: Color(0xFFF2C611),
+        size: 15.0,
+      ),
+    );
+
+    // Widget para representar las estrellas a la mitad
+    final star_half = Container(
+      margin: EdgeInsets.only(
+          //top: 323.0,//Posision en la pantalla
+          left: 3.0,
+          //right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_half,
+        color: Color(0xFFF2C611),
+        size: 15.0,
+      ),
+    );
+
+    // Widget para reprecentas las estrellas llenas
+    final star = Container(
+      margin: EdgeInsets.only(
+          //top: 323.0,//Posision en la pantalla
+          left: 3.0,
+          //right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star,
+        color: Color(0xFFF2C611),
+        size: 15.0,
+      ),
+    );
+
     final userComment = Container(
       margin: EdgeInsets.only(
           left: 12.0
@@ -32,20 +77,33 @@ class Review extends StatelessWidget {
       ),
     );
 
-    final userInfo = Container(
-      margin: EdgeInsets.only(
-          left: 20.0
-      ),
-      //Creamo el hijo que sera el nombre del texto que estara dentro
-      child: Text(
-        details,
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontFamily: "Lato",
-            fontSize: 13.0,
-            color: Color(0xFFa3a5a7)
-        ),
-      ),
+    final userInfo = Row(
+        children: [
+          Container(
+            margin: EdgeInsets.only(
+              left: 20.0
+            ),
+            //Creamo el hijo que sera el nombre del texto que estara dentro
+            child: Text(
+              details,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontFamily: "Lato",
+                fontSize: 13.0,
+                color: Color(0xFFa3a5a7)
+              ),
+            ),
+          ),
+          Row(
+            children: [
+               star,//Iconos de estrellas
+               star,
+               star,
+               star,
+               star_border
+            ],
+          )
+        ],
     );
 
     //Se crea el nombre del usuario
