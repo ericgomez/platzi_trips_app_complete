@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'description_place.dart';
+import 'review_list.dart';//Importamos nuestra clase
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("My Flutter App"),
         ),
-        body: new DescriptionPlace("Bahamas", 4, descriptionDummy),
+        //body: new DescriptionPlace("Bahamas", 4, descriptionDummy),
+        body: ReviewList(),//Mostramos nuestra lista de Review
         )
       );//MyHomePage(title: 'Flutter Demo Home Page'),
   }
