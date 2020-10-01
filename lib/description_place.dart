@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
@@ -108,9 +109,11 @@ class DescriptionPlace extends StatelessWidget {
 
     //Pare poder retornar lo almacenamos como una columna
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,//con CrossAxisAlignment alineamos a una direcion diferente en este caso a la izquierda
       children: [
         title_stars,
-        description
+        description,
+        ButtonPurple("Navigate")
       ],
     );
   }
