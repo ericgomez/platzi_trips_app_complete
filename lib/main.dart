@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'description_place.dart';
 import 'review_list.dart';//Importamos nuestra clase
 import 'gradient_back.dart';
 
 void main() {
+  //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: Brightness.light
+      )
+  );
   runApp(MyApp());
 }
 
