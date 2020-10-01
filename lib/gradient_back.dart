@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GradientBack extends StatelessWidget {
+
+  //Creamo el titulo de nuestro appBar
+  String title = "Popular";
+
+  //Creamos el constructor
+  GradientBack(this.title);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,7 +27,18 @@ class GradientBack extends StatelessWidget {
           tileMode: TileMode.clamp //Color por defecto mientras carga el gradiente o en caso de que no carge
         )
       ),
-
+      //Creamos un nuevo hijo
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 30.0,
+          fontFamily: "Lato",
+          fontWeight: FontWeight.bold
+        ),
+      ),
+      //Pondremos la alineacion del texto
+      alignment: Alignment(-0.9, -0.6),
     );
   }
   

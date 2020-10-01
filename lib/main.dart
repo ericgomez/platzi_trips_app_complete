@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                 ReviewList()
               ],
             ),
-            GradientBack()//Mandamos a llamar al metodo de la clase GradientBack
+            GradientBack("Popular")//Mandamos a llamar al metodo de la clase GradientBack
           ],
         ),
         )
