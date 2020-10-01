@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'description_place.dart';
 import 'review_list.dart';//Importamos nuestra clase
 import 'gradient_back.dart';
+import 'header_appbar.dart';
 
 void main() {
   //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
                 ReviewList()
               ],
             ),
-            GradientBack("Popular")//Mandamos a llamar al metodo de la clase GradientBack
+            //GradientBack("Popular")//Mandamos a llamar al metodo de la clase GradientBack
+            HeaderAppBar()
           ],
         ),
         )

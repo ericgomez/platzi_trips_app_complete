@@ -1,10 +1,44 @@
 import 'package:flutter/material.dart';
 
 class CardImage extends StatelessWidget {
+
+  String pathImage = "assets/img/beach.jpeg";
+  
+  //Creamos nuestro constructor
+  CardImage(this.pathImage);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+
+    final card = Container(
+      height: 350.0,
+      width: 250.0,
+      margin: EdgeInsets.only(
+        top: 80,
+        left: 20
+      ),
+
+      //Agregamos la decoracion como imagen
+      decoration: BoxDecoration(
+        image:DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(pathImage)
+        ),
+            //Asemos que la imagen sea redonda
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+        shape: BoxShape.rectangle,//Haacemos que la imagen sea rectangular
+        boxShadow: <BoxShadow>[//Agregamos una sombra
+          BoxShadow(
+            color: Colors.black38,
+            blurRadius: 15,//Que tan degradado quiero que quede
+            offset: Offset(0,7)//la posicion de la sombra en X y en Y
+          )
+        ]
+      ),
+    );
+
+    //Devolvemos la imagen
+    return card;
   }
   
 }
