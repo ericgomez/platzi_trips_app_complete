@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'platzi_trips.dart';
+import 'platzi_trips_cupertino.dart';
 
 void main() {
   //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
@@ -21,11 +22,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,//Color primario de la aplicacion
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar
+      //home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar estilo Clasico para Android
+      home: PlatziTripsCupertino()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar Cupertino iOS para Mac
       );//MyHomePage(title: 'Flutter Demo Home Page'),
   }
 }
