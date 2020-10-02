@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'platzi_trips.dart';
 
 void main() {
   //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:
+      home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar
       );//MyHomePage(title: 'Flutter Demo Home Page'),
   }
 }
