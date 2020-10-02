@@ -14,12 +14,30 @@ class FloatingActionButtonGreen extends StatefulWidget {
 //Aqui es donde construimos nuestro Widget
 class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
 
+  IconData icon = Icons.favorite_border;
+
   void onPressedFav(){
-    Scaffold.of(context).showSnackBar(//Es la accion de muestra un evento con el SnackBar
-        SnackBar(
-          content: Text("Agregaste a tus Favoritos"),
-        )
-    );
+    setState(() {
+      if(this.icon == Icons.favorite_border) {
+        this.icon = Icons.favorite;
+
+        Scaffold.of(context).showSnackBar(//Es la accion muestra un evento con el SnackBar
+            SnackBar(
+              content: Text("Agregaste a tus Favoritos"),
+            )
+        );
+
+      } else {
+        this.icon = Icons.favorite_border;
+
+        Scaffold.of(context).showSnackBar(//Es la accion de muestra un evento con el SnackBar
+            SnackBar(
+              content: Text("Quitaste a tus Favoritos"),
+            )
+        );
+
+      }
+    });
   }
 
   @override
@@ -31,9 +49,8 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
         tooltip: "Fav", //Si se pasa un el elemento con un mouse
         onPressed: onPressedFav,//Con onPressed agregamos la accion que tendra el metodo al hacer click en este caso ejecuta una funcion
         child: Icon(
-          Icons.favorite_border
+          this.icon
         ),
     );
   }
-
 }
