@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'platzi_trips.dart';
 import 'platzi_trips_cupertino.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 
 void main() {
   //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
@@ -18,17 +19,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter App',
-      theme: ThemeData(
-
-        primarySwatch: Colors.purple,//Color primario de la aplicacion
-
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      //home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar estilo Clasico para Android
-      home: PlatziTripsCupertino()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar Cupertino iOS para Mac
-      );//MyHomePage(title: 'Flutter Demo Home Page'),
+    return BlocProvider(
+        child: MaterialApp(//Aquien se lo quiero exponer en este caso al widget mas alto MaterialApp
+            title: 'Flutter App',
+            theme: ThemeData(
+              primarySwatch: Colors.purple,//Color primario de la aplicacion
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            //home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar estilo Clasico para Android
+            home: PlatziTripsCupertino()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar Cupertino iOS para Mac
+        ),
+        bloc: UserBloc());//Lo que quiero exporner
   }
 }
 
