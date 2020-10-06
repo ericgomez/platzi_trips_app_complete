@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'gradient_back.dart';//importamos las clases que vamos a utilizar para hacer Stack
-import 'card_image_list.dart';//importamos las clases que vamos a utilizar
+import 'package:platzi_trips_app/Place/ui/widgets/gradient_back.dart';//importamos las clases que vamos a utilizar para hacer Stack
+import 'package:platzi_trips_app/Place/ui/widgets/card_image_list.dart';//importamos las clases que vamos a utilizar
 
 class HeaderAppBar extends StatelessWidget {
   @override
