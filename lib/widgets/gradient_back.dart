@@ -4,15 +4,17 @@ class GradientBack extends StatelessWidget {
 
   //Creamo el titulo de nuestro appBar
   String title = "Popular";
+  //Definimos la altuta
+  double height = 0;
 
   //Creamos el constructor
-  GradientBack(this.title);
+  GradientBack(this.title, this.height);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: 250.0,//Definimos la altura
+      height: height,//Definimos la altura dinamica
       decoration: BoxDecoration(
         gradient: LinearGradient(//La forma en que queremos que se genere nuestro gradient
           colors: [//Agregamos un arreglo de colores con []

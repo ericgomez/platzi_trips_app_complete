@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_trips_app/Place/ui/widgets/gradient_back.dart';//importamos las clases que vamos a utilizar para hacer Stack
+import 'package:platzi_trips_app/widgets/gradient_back.dart';//importamos las clases que vamos a utilizar para hacer Stack
 import 'package:platzi_trips_app/Place/ui/widgets/card_image_list.dart';//importamos las clases que vamos a utilizar
 
 class HeaderAppBar extends StatelessWidget {
@@ -8,7 +8,7 @@ class HeaderAppBar extends StatelessWidget {
     // TODO: implement build
     return Stack(//Stack me permite acomodar un Widget sobre otro Widget
       children: [
-        GradientBack("Bienvenido"),
+        GradientBack("Bienvenido",250),
         CardImageList()
       ],
     );

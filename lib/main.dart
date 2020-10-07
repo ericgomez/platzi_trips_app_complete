@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'platzi_trips_cupertino.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
+import 'package:platzi_trips_app/User/ui/screens/sign_in_screen.dart';
 
 void main() {
   //SystemChrome vuelve la barra de estado transparente en Android para que no tenga un color diferente
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             //home: PlatziTrips()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar estilo Clasico para Android
-            home: PlatziTripsCupertino()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar Cupertino iOS para Mac
+            //home: PlatziTripsCupertino()//Mandamos llamar el metodo de la clase platzi_trips que contiene el bottomNavigationBar Cupertino iOS para Mac
+            home: SignInScreen(),//Mandamos llamar al metodo de la clase sign_in_screen para el login
         ),
         bloc: UserBloc());//Lo que quiero exporner
   }
