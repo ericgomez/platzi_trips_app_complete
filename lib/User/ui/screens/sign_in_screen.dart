@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
+import 'package:platzi_trips_app/widgets/button_green.dart';
 
 //Nota: La Clase StatefulWidget necesita de una clase State
 class SignInScreen extends StatefulWidget {
@@ -28,14 +29,23 @@ class _SignInScreen extends State<SignInScreen> {
         children: [
           GradientBack("", null),//Si coloco a null me lo pondra fullScreen
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,//Utilizamos la propiedad MainAxisAlignment para Centrar los elementos de manera vertical
             children: [
-              Text("Welcome \n This is your Travel App",
-              style: TextStyle(
-                fontSize: 37,
-                fontFamily: "Lato",
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),)
+              Text("Welcome \n This is your Travel app.",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontFamily: "Lato",
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              ButtonGreen(text: "Login with Gmail",//De esta manera enviamos los elementos al constructor de la clase button_green.dart
+                  onPressed: () {
+
+                  },
+                width: 300,
+                height: 50,
+              )
             ],
           )
         ],
