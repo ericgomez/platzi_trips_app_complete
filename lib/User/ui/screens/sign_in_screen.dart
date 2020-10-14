@@ -68,6 +68,7 @@ class _SignInScreen extends State<SignInScreen> {
               ),
               ButtonGreen(text: "Login with Gmail",//De esta manera enviamos los elementos al constructor de la clase button_green.dart
                   onPressed: () {
+                    userBloc.signOut();//Forzamos el cierre de sesion en caso de existir persistesia por Firebase
                     userBloc.signIn().then((FirebaseUser user) => print("El usuario es ${user.displayName}"));//Cuando alguien precione el boton de SignIn se llamara a este metodo
                   },
                 width: 300,

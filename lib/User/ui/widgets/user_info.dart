@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:platzi_trips_app/User/model/user.dart';
 
 class UserInfo extends StatelessWidget {
 
-  String imgProfile;
-  String name;
-  String email;
+  User user;//Creo el objeto tipo User
 
-  UserInfo(this.imgProfile, this.name, this.email);
+  UserInfo(@required this.user);//Le envio los parametros al constructor
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,8 @@ class UserInfo extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(imgProfile)
+              //image: AssetImage(photoURL),//Se agrega la imagen de manera local
+              image: NetworkImage(user.photoURL),//Recibo los parametros desde el metodo user con la Url desde internet
           )
       ),
     );
@@ -39,7 +39,7 @@ class UserInfo extends StatelessWidget {
                 bottom: 5.0
             ),
             child: Text(
-                name,
+                user.name,//Recibo los parametros desde el metodo user
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class UserInfo extends StatelessWidget {
             )
         ),
         Text(
-            email,
+            user.email,//Recibo los parametros desde el metodo user
             style: TextStyle(
                 fontSize: 15.0,
                 color: Colors.white30,
