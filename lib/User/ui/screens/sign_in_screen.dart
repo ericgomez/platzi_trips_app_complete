@@ -4,6 +4,7 @@ import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import 'package:platzi_trips_app/widgets/button_green.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
 
 //Nota: La Clase StatefulWidget necesita de una clase State
 class SignInScreen extends StatefulWidget {
@@ -25,7 +26,24 @@ class _SignInScreen extends State<SignInScreen> {
     //Instanciamos el Objeto userBloc con BlocProvider
     userBloc = BlocProvider.of(context);
 
-    return signInGoogleUI();
+    return _handleCurrentSession();
+  }
+
+  Widget _handleCurrentSession() {//Este Widget maneja el esta de la sesion
+    //En este metodo tendra la logica para decidir si ir a Widget signInGoogleUI o a otra pantalla
+    return StreamBuilder(
+      stream: userBloc.authStatus,
+      // ignore: missing_return
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        //snapshot contiene nuestra data - nuestro objeto User traido desde FireBase
+        if(!snapshot.hasData || snapshot.hasError){
+          return signInGoogleUI();
+        } else {
+          return PlatziTripsCupertino();
+        }
+      },
+    );
+
   }
 
   //Si el usuario no esta logeado
