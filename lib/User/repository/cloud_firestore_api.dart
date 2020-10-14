@@ -13,7 +13,17 @@ class CloudFirestoreAPI {
   void updateUserData(User user) async {
     //Comenzamos a definir nuestra data
     DocumentReference ref = _db.collection(USERS).document(user.uid);
-
+    return ref.setData({
+      'uid': user.uid,
+      'name': user.name,
+      'email': user.email,
+      'photoURL': user.photoURL,
+      'myPlaces': user.myPlaces,
+      'myFavoritePlaces': user.myFavoritePlaces,
+      'lastSignIn': DateTime.now()//Capturamos el ultimo login
+    },
+        merge: true //Indicamos que aplique los cambios en la base de datos
+    );
   }
 
 }
