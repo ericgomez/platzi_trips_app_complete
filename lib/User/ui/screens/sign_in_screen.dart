@@ -55,7 +55,7 @@ class _SignInScreen extends State<SignInScreen> {
         alignment: Alignment.center,//Se realiza un alineado al centro
           //ponemos los que esta mas atras
         children: [
-          GradientBack("", null),//Si coloco a null me lo pondra fullScreen
+          GradientBack(height: null),//Si coloco a null me lo pondra fullScreen
           Column(
             mainAxisAlignment: MainAxisAlignment.center,//Utilizamos la propiedad MainAxisAlignment para Centrar los elementos de manera vertical
             children: [

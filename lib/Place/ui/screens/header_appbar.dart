@@ -8,7 +8,7 @@ class HeaderAppBar extends StatelessWidget {
     // TODO: implement build
     return Stack(//Stack me permite acomodar un Widget sobre otro Widget
       children: [
-        GradientBack("Bienvenido",250),
+        GradientBack(height: 250),
         CardImageList()
       ],
     );

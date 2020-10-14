@@ -8,12 +8,23 @@ class GradientBack extends StatelessWidget {
   double height = 0;
 
   //Creamos el constructor
-  GradientBack(this.title, this.height);
+  GradientBack({Key key, this.height});//Si height = null sera full screen
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    //Medimos el tamaño de la pantalla de manera automatica
+    double screenHeight = MediaQuery.of(context).size.height;//Obtenemos la altura de manera automatica
+    double screenWidth = MediaQuery.of(context).size.width;//Obtenemos el ancho de manera automatica
+
+    if(height == null){
+      //Si height es igual a null tomara todo el tamaño del gradiente
+      height = screenHeight;
+    }
+
     return Container(
+      width: screenWidth,
       height: height,//Definimos la altura dinamica
       decoration: BoxDecoration(
         gradient: LinearGradient(//La forma en que queremos que se genere nuestro gradient
@@ -30,7 +41,19 @@ class GradientBack extends StatelessWidget {
         )
       ),
       //Creamos un nuevo hijo
-      child: Text(
+      child: FittedBox(//Realiza la funcion de dibujar un circulo
+        fit: BoxFit.none,
+        alignment: Alignment(-1.5, -0.8),//Para que solo muestre una parte del circulo
+        child: Container(
+         width: screenWidth,
+         height: screenHeight,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(0, 0, 0, 0.05),//Damos un grado de opacidad
+            borderRadius: BorderRadius.circular(screenHeight / 2)//Creamos un borde a la mitad
+          ),
+        ),
+      ),
+      /*Text(
         title,
         style: TextStyle(
           color: Colors.white,
@@ -38,9 +61,9 @@ class GradientBack extends StatelessWidget {
           fontFamily: "Lato",
           fontWeight: FontWeight.bold
         ),
-      ),
+      ),*/
       //Pondremos la alineacion del texto
-      alignment: Alignment(-0.9, -0.6),
+      //alignment: Alignment(-0.9, -0.6),
     );
   }
   
