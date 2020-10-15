@@ -45,7 +45,7 @@ class GradientBack extends StatelessWidget {
         fit: BoxFit.none,
         alignment: Alignment(-1.5, -0.8),//Para que solo muestre una parte del circulo
         child: Container(
-         width: screenWidth,
+         width: screenHeight,//colocamos width: screenHeight para que el circulo se posicione a la mitad de la pantalla
          height: screenHeight,
           decoration: BoxDecoration(
             color: Color.fromRGBO(0, 0, 0, 0.05),//Damos un grado de opacidad

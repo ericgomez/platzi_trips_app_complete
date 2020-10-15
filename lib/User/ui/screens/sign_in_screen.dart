@@ -21,11 +21,14 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreen extends State<SignInScreen> {
 
   UserBloc userBloc;//Creamos el Objeto UserBloc
+  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
     //Instanciamos el Objeto userBloc con BlocProvider
     userBloc = BlocProvider.of(context);
+    //Obtenemos el ancho de manera automatica de la pantalla
+    screenWidth = MediaQuery.of(context).size.width;
 
     return _handleCurrentSession();
   }
@@ -59,13 +62,18 @@ class _SignInScreen extends State<SignInScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,//Utilizamos la propiedad MainAxisAlignment para Centrar los elementos de manera vertical
             children: [
-              Text("Welcome \n This is your Travel app.",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
+              Flexible(//Con Flexible manejamos de desbordamiendo de Texto
+                  child: Container(//Lo almacenamos dentro de un contenedor para el manejo de desbordamiento de texto
+                    width: screenWidth,//Definimos que el tamaño maximo sera el de la pantalla y no podra exederse
+                    child: Text("Welcome \n This is your Travel app.",
+                          style: TextStyle(
+                          fontSize: 28,
+                          fontFamily: "Lato",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
               ),
               ButtonGreen(text: "Login with Gmail",//De esta manera enviamos los elementos al constructor de la clase button_green.dart
                   onPressed: () {

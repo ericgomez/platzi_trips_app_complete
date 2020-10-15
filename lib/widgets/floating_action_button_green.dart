@@ -51,6 +51,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
         child: Icon(
           this.icon
         ),
+      heroTag: null,//Cuando tenemos muchos FloatingActionButton los Tags se comienzan a duplicar lo recomendable es ponerlo como nulo
     );
   }
 }

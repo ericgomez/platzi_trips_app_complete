@@ -34,6 +34,7 @@ class _CircleButton extends State<CircleButton> {
             size: widget.iconSize,
             color: Color(0xFF4268D3),
           ),
+          heroTag: null,//Cuando tenemos muchos FloatingActionButton los Tags se comienzan a duplicar lo recomendable es ponerlo como nulo
         )
     );
   }
