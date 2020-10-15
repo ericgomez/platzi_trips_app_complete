@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
 
-class CardImage extends StatelessWidget {
+class CardImageWithFabIcon extends StatelessWidget {
 
-  String pathImage = "assets/img/beach.jpeg";
+  //Declaracion de Variables
+  final double height;//Declaramos como final los elementos que van a ser requeridos
+  final double width;//Declaramos como final los elementos que van a ser requeridos
+  double left;
+  final String pathImage;//Declaramos como final los elementos que van a ser requeridos
+  final VoidCallback onPressedFabIcon;//Declaramos como final los elementos que van a ser requeridos
+  final IconData iconData;
   
   //Creamos nuestro constructor
-  CardImage(this.pathImage);
+  CardImageWithFabIcon({
+    Key key,
+    //Una variable requerida no puede ser inicializada
+    @required this.pathImage,
+    @required this.width,
+    @required this.height,
+    @required this.onPressedFabIcon,
+    @required this.iconData,
+    this.left
+  });
 
   @override
   Widget build(BuildContext context) {
 
     final card = Container(
-      height: 350.0,
-      width: 250.0,
+      height: height,
+      width: width,
       margin: EdgeInsets.only(
-        top: 80,
-        left: 20
+        left: left
       ),
 
       //Agregamos la decoracion como imagen
@@ -43,7 +57,7 @@ class CardImage extends StatelessWidget {
       alignment: Alignment(0.9,1.1),
       children: [
         card,
-        FloatingActionButtonGreen()//Mandamos llamar nuestro metodo que viene de la clase exportada floating_action_button_green
+        FloatingActionButtonGreen(iconData: iconData,onPressed: onPressedFabIcon,)//Mandamos llamar nuestro metodo que viene de la clase exportada floating_action_button_green
       ],
     );
   }

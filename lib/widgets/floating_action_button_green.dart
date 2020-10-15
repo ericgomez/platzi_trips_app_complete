@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
+
+  final IconData iconData;
+  final VoidCallback onPressed;
+
+  //Creamos el metodo constructor
+  FloatingActionButtonGreen({
+    Key key,
+    @required this.iconData,
+    @required this.onPressed
+  });
+
   @override
   State<StatefulWidget> createState() {
     // Retornamos el metodo _FloatingActionButtonGreen que contiene el State que es el metodo que espera un StatefulWidget
@@ -16,7 +27,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
 
   IconData icon = Icons.favorite_border;
 
-  void onPressedFav(){
+  /*void onPressedFav(){
     setState(() {
       if(this.icon == Icons.favorite_border) {
         this.icon = Icons.favorite;
@@ -38,7 +49,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
 
       }
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +58,9 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
         backgroundColor: Color(0xFF11DA53),
         mini: true,//Tipo de tamaño mini
         tooltip: "Fav", //Si se pasa un el elemento con un mouse
-        onPressed: onPressedFav,//Con onPressed agregamos la accion que tendra el metodo al hacer click en este caso ejecuta una funcion
+        onPressed: widget.onPressed,//Con onPressed agregamos la accion que tendra el metodo al hacer click en este caso ejecuta una funcion
         child: Icon(
-          this.icon
+          widget.iconData
         ),
       heroTag: null,//Cuando tenemos muchos FloatingActionButton los Tags se comienzan a duplicar lo recomendable es ponerlo como nulo
     );

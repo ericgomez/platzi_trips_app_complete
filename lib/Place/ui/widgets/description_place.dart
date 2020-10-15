@@ -16,7 +16,7 @@ class DescriptionPlace extends StatelessWidget {
     // Widget para representar las estrellas vacias
     final star_border = Container(
       margin: EdgeInsets.only(
-          top: 323.0,//Posision en la pantalla
+          top: 353.0,//Posision en la pantalla
           right: 3.0
       ),
 
@@ -29,7 +29,7 @@ class DescriptionPlace extends StatelessWidget {
     // Widget para representar las estrellas a la mitad
     final star_half = Container(
       margin: EdgeInsets.only(
-          top: 323.0,//Posision en la pantalla
+          top: 353.0,//Posision en la pantalla
           right: 3.0
       ),
 
@@ -42,7 +42,7 @@ class DescriptionPlace extends StatelessWidget {
     // Widget para reprecentas las estrellas llenas
     final star = Container(
       margin: EdgeInsets.only(
-        top: 323.0,//Posision en la pantalla
+        top: 353.0,//Posision en la pantalla
         right: 3.0
       ),
 
@@ -58,7 +58,7 @@ class DescriptionPlace extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(
-            top: 320.0,
+            top: 350.0,
             left: 20.0,
             right: 20.0,
           ),

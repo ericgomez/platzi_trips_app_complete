@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import 'package:platzi_trips_app/widgets/text_input.dart';
@@ -73,10 +75,18 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
             child: ListView(
               children: [
                 Container(//Este container contendra la foto
-
+                  alignment: Alignment.center,
+                  child: CardImageWithFabIcon(
+                    pathImage: "assets/img/mountain.jpeg",
+                    iconData: Icons.camera_alt,
+                    width: 350,
+                    height: 250,
+                    left: 0,
+                  ),
                 ),
                 Container(//Este container contendra las los TextField del titulo
                   margin: EdgeInsets.only(
+                    top: 20,
                     bottom: 20
                   ),
                   child: TextInput(
