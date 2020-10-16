@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 
 class ButtonPurple extends StatelessWidget {
 
-  String buttonText = "Navigate";
+  final String buttonText;
+  final VoidCallback onPressed;
 
   //Creamos el Contructor
-  ButtonPurple(this.buttonText);
+  ButtonPurple({
+    Key key,
+    @required this.buttonText,
+    @required this.onPressed
+  });
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(//Nos permite crear diceñso que pueden ser clickable podemos simular un boton pero mas bonito
       //Agregamos la propiedad onTap para manejar los clicks y el comportamiento del boton
-      onTap: () {
-        Scaffold.of(context).showSnackBar(//Es la accion de muestra un evento con el SnackBar
-          SnackBar(
-              content: Text("Navegando"),
-          )
-        );
-      },
+      onTap: onPressed,
       child: Container(
         margin: EdgeInsets.only(
           top: 30,
