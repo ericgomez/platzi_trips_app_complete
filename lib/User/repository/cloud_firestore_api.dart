@@ -30,9 +30,8 @@ class CloudFirestoreAPI {
     );
   }
 
-  Future<void> updatePlace(Place place) async {
+  Future<void> updatePlaceData(Place place) async {
     CollectionReference refPlaces = _db.collection(PLACES);//Generamos un identificados unico y auto incrementable
-
     //Consultamos el usuario que esta logeado
     await _auth.currentUser().then((FirebaseUser user) {
       refPlaces.add({

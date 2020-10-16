@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
+import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:platzi_trips_app/widgets/button_purple.dart';
 import 'package:platzi_trips_app/widgets/gradient_back.dart';
 import 'package:platzi_trips_app/widgets/text_input.dart';
@@ -26,6 +29,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
 
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
 
@@ -120,7 +124,15 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
 
                           //2. Cloud Firestores
                           // Insertamom el objeto Place - title, description, url, userOwner, likes
-
+                          userBloc.updatePlaceData(Place(
+                              name: _controllerTitlePlace.text,
+                              description: _controllerDescriptionPlace.text,
+                              likes: 0,
+                          )).whenComplete(() {
+                            //Mostramos un mensaje una vez que termina la subida de datos
+                            print("TERMINO");
+                            Navigator.pop(context);//Como ya no necesitamos la ventana la destruimos
+                          });//como estoy utilizando en Future puedo utiizar el metodo whenComplete "cuando se complete"
                         }
                     ),
                 )
