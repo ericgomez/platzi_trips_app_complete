@@ -59,5 +59,13 @@
     </array>
     <!-- End of the Google Sign-in Section -->
 
+    <!-- Solicitud de permisos para IOS con las 3 llaves -->
+    <key>NSCameraUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Platzi Trips quiere tomar una foto. ¿Podemos usar tu cámara?</string>
+
 </dict>
 </plist>

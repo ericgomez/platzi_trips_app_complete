@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
@@ -13,7 +14,7 @@ import 'package:platzi_trips_app/widgets/title_header.dart';
 
 class AddPlaceScreen extends StatefulWidget {
 
-  File image;
+  PickedFile image;
 
   //Creamos el constructor
   AddPlaceScreen({Key key, this.image});
@@ -82,7 +83,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(//Este container contendra la foto
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/img/mountain.jpeg",
+                    pathImage: widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350,
                     height: 250,

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
 
@@ -37,7 +38,8 @@ class CardImageWithFabIcon extends StatelessWidget {
       decoration: BoxDecoration(
         image:DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(pathImage)
+            //image: AssetImage(pathImage)//NetworkImage(pathImage) para mostrar la imagen atravez de interner o AssetImage(pathImage) de manera local
+            image: pathImage.contains('assets') ? AssetImage(pathImage) : FileImage(new File(pathImage)),
         ),
             //Asemos que la imagen sea redonda
             borderRadius: BorderRadius.all(Radius.circular(10)),
