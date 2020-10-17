@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -120,9 +121,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     child: ButtonPurple(
                         buttonText: "Add Place",
                         onPressed: () {
-                          //1.Firebase Storage
-                          //url -
+                          //ID del usuario qu e esta olgeado actualmente
+                          userBloc.currentUser.then((FirebaseUser user) {
+                            if (user != null) {//Si user es diferente de null realizamos la subida del archivo
+                              //1.Firebase Storage
+                              //url -
 
+                            }
+                          });//Una vez que termine la consulta me devlvera mi objeto de tipo user
                           //2. Cloud Firestores
                           // Insertamom el objeto Place - title, description, url, userOwner, likes
                           userBloc.updatePlaceData(Place(
