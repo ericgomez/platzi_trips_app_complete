@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -124,22 +125,36 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                           //ID del usuario qu e esta olgeado actualmente
                           userBloc.currentUser.then((FirebaseUser user) {
                             if (user != null) {//Si user es diferente de null realizamos la subida del archivo
+                              String uid = user.uid;
+                              String path = "${uid}/${DateTime.now().toString()}.jpg";
                               //1.Firebase Storage
                               //url -
+                              userBloc.uploadFile(path, File(widget.image.path))//Convertimos un PickedFile a File con File(image.path);
+                                  .then((StorageUploadTask storageUploadTask) {
+                                    storageUploadTask.onComplete.then((StorageTaskSnapshot snapshot) {
+                                      snapshot.ref.getDownloadURL().then((urlImage) {
+                                        print("URLIMAGE: ${urlImage}");
+
+                                        //2. Cloud Firestores
+                                        // Insertamom el objeto Place - title, description, url, userOwner, likes
+                                        userBloc.updatePlaceData(Place(
+                                          name: _controllerTitlePlace.text,
+                                          description: _controllerDescriptionPlace.text,
+                                          urlImage: urlImage,
+                                          likes: 0,
+                                        )).whenComplete(() {
+                                          //Mostramos un mensaje una vez que termina la subida de datos
+                                          print("TERMINO");
+                                          Navigator.pop(context);//Como ya no necesitamos la ventana la destruimos
+                                        });
+
+                                      });
+                                    });
+                              });
 
                             }
                           });//Una vez que termine la consulta me devlvera mi objeto de tipo user
-                          //2. Cloud Firestores
-                          // Insertamom el objeto Place - title, description, url, userOwner, likes
-                          userBloc.updatePlaceData(Place(
-                              name: _controllerTitlePlace.text,
-                              description: _controllerDescriptionPlace.text,
-                              likes: 0,
-                          )).whenComplete(() {
-                            //Mostramos un mensaje una vez que termina la subida de datos
-                            print("TERMINO");
-                            Navigator.pop(context);//Como ya no necesitamos la ventana la destruimos
-                          });//como estoy utilizando en Future puedo utiizar el metodo whenComplete "cuando se complete"
+                          //como estoy utilizando en Future puedo utiizar el metodo whenComplete "cuando se complete"
                         }
                     ),
                 )
