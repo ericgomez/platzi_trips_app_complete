@@ -33,13 +33,22 @@ class CloudFirestoreAPI {
   Future<void> updatePlaceData(Place place) async {
     CollectionReference refPlaces = _db.collection(PLACES);//Generamos un identificados unico y auto incrementable
     //Consultamos el usuario que esta logeado
-    await _auth.currentUser().then((FirebaseUser user) {
+    await _auth.currentUser().then((FirebaseUser user) {//Cuando el Place se añade
       refPlaces.add({
         //Optenemos los datos del formulario
         'name': place.name,
         'descripion': place.description,
         'like': place.likes,
-        'userOwner': "${USERS}/${user.uid}"//Tipos de dato Reference
+        'userOwner': _db.document("${USERS}/${user.uid}")//Esta es la forma como asignamos referencias
+      }).then((DocumentReference dr) {
+        dr.get().then((DocumentSnapshot snapshot) {//Obtengo la Photo de ese lugar
+          //Asignar como referencia y un ARRAY
+          DocumentReference refUsers = _db.collection(USERS).document(user.uid);//Esta es la forma como asignamos referencias
+          refUsers.updateData({
+            //Se estara realizando un push en el array y a signando una referencia
+            'myPlaces': FieldValue.arrayUnion([_db.document("${PLACES}/${snapshot.documentID}")])//Nos permitira ase push al array y snapshot.documentID Me devuelve el ID del Place que se acaba de asignar
+          });
+        });
       });
     });
 
