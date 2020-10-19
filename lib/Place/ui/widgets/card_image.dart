@@ -38,8 +38,9 @@ class CardImageWithFabIcon extends StatelessWidget {
       decoration: BoxDecoration(
         image:DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(pathImage)//NetworkImage(pathImage) para mostrar la imagen atravez de interner o AssetImage(pathImage) de manera local
-            //image: pathImage.contains('assets') ? NetworkImage(pathImage) : FileImage(new File(pathImage)),
+            //image: NetworkImage(pathImage)//NetworkImage(pathImage) para mostrar la imagen atravez de interner o AssetImage(pathImage) de manera local
+            //image: pathImage.contains('assets') ? AssetImage(pathImage) : FileImage(new File(pathImage)),
+            image: pathImage.contains('http')? NetworkImage(pathImage): FileImage(File(pathImage))
         ),
             //Asemos que la imagen sea redonda
             borderRadius: BorderRadius.all(Radius.circular(10)),

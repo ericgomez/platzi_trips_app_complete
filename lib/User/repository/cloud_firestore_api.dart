@@ -41,7 +41,7 @@ class CloudFirestoreAPI {
         //Optenemos los datos del formulario
         'name': place.name,
         'description': place.description,
-        'like': place.likes,
+        'likes': place.likes,
         'urlImage': place.urlImage,
         'userOwner': _db.document("${USERS}/${user.uid}")//Esta es la forma como asignamos referencias
       }).then((DocumentReference dr) {
@@ -96,6 +96,7 @@ class CloudFirestoreAPI {
           left: left,
           onPressedFabIcon: () {
             //Contendra la accion al precional el boton
+            likePlace(p.documentID);//Mandamos llamar al metodo likePlace y le enviamos el docuemnto
           },
           iconData: iconData
       ));
@@ -103,6 +104,21 @@ class CloudFirestoreAPI {
 
     return placesCard;
 
+  }
+
+  Future likePlace(String idPlace) async {
+    await _db.collection(PLACES).document(idPlace).get()
+        .then((DocumentSnapshot ds) {
+       int likes = ds.data['likes'];
+       //seteamos los datos
+       _db.collection(PLACES).document(idPlace)
+           .updateData({//El metodo updateData va a actualizar el key likes
+
+         'likes': likes+1//incremento los likes
+
+       });
+        
+    });
   }
 
 
