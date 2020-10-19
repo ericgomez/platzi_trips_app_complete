@@ -100,6 +100,9 @@ class CloudFirestoreAPI {
           iconData: iconData
       ));
     });
+
+    return placesCard;
+
   }
 
 

@@ -1,28 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'card_image.dart';
 
 class CardImageList extends StatelessWidget {
+
+  UserBloc userBloc;//Creamos el metodo UserBloc
+
   @override
   Widget build(BuildContext context) {
 
-    double width = 300;
-    double height = 350;
-    double left = 10;
+    userBloc = BlocProvider.of<UserBloc>(context);
 
     return Container(
       height: 350,
-      child: ListView(
-        padding: EdgeInsets.all(25),
-        scrollDirection: Axis.horizontal,//Axis para que el Scroll sea Horizontal
-        children: [//Agregamos todos los elementos que estan componiendo la lista
-          CardImageWithFabIcon(pathImage: "assets/img/mountain.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-          CardImageWithFabIcon(pathImage: "assets/img/beach.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-          CardImageWithFabIcon(pathImage: "assets/img/beach_palm.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-          CardImageWithFabIcon(pathImage: "assets/img/mountain_stars.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-          CardImageWithFabIcon(pathImage: "assets/img/sunset.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-          CardImageWithFabIcon(pathImage: "assets/img/river.jpeg", iconData: Icons.favorite_border, width: width, height: height, left: left),
-        ],
+      child: StreamBuilder(//StreamBuilder Para estar alerta cuando al informacion sufra algun cambio
+          stream: userBloc.placesStream,//nos trae toda la lista de lugares
+          builder: (context, AsyncSnapshot snapshot) {
+              switch (snapshot.connectionState) {//Por medio del switch estaresmos revisando o monitoreando la coneccion
+                case ConnectionState.waiting:
+                  return CircularProgressIndicator();
+                case ConnectionState.active:
+                  return listViewPlaces(userBloc.buildPlaces(snapshot.data.documents));
+                case ConnectionState.done:
+                  return listViewPlaces(userBloc.buildPlaces(snapshot.data.documents));
+                case ConnectionState.none:
+                  return CircularProgressIndicator();
+                default:
+                  return listViewPlaces(userBloc.buildPlaces(snapshot.data.documents));
+
+              }
+          }
       ),
+    );
+  }
+
+  //Creamos un metodo que genera la lista de imagenes de la pagina Home
+  Widget  listViewPlaces(List<CardImageWithFabIcon> placesCard) {
+    return ListView(
+      padding: EdgeInsets.all(25),
+      scrollDirection: Axis.horizontal,//Axis para que el Scroll sea Horizontal
+      children: placesCard,
     );
   }
 

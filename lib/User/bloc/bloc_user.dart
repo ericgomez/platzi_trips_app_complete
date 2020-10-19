@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/repository/firebase_storage_repository.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,13 +46,18 @@ class UserBloc implements Bloc {
   * para que la ventana de lugares siempre este escuchando y se refresque automaticamente cuando alguien agrege un nuevo lugar*/
   Stream<QuerySnapshot> placesListStream = Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();//Se solicita la fotografia que este en la base de datos Firestore en la coleccion Places
   Stream<QuerySnapshot> get placesStream => placesListStream;//Estaremos escuchando el objeto placesStream
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
-  //Mapeamos el metodo
-  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
 
   Stream<QuerySnapshot> myPlacesListStream(String uid) => Firestore.instance.collection(CloudFirestoreAPI().PLACES)//Comenzamos con nuestro filtro
       .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/${uid}"))//Este metodo me conveirte la cadana automaticamente a un Strings
       .snapshots();
+
+  //Mapeamos el metodo
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
+
+
+
 
   final _firebaseStorageRepository = FirebaseStorageRepository();
   Future<StorageUploadTask> uploadFile(String path, File image) => _firebaseStorageRepository.uploadFile(path, image);
