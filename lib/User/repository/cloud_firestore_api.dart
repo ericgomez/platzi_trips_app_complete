@@ -80,46 +80,39 @@ class CloudFirestoreAPI {
   }
 
   //Metodo para obtener la lista de places hacemos el metodo Card_image_list lo mas generico posible
-  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
-    List<CardImageWithFabIcon> placesCard = List<CardImageWithFabIcon>();
+  List<Place> buildPlaces(List<DocumentSnapshot> placesListSnapshot, User user) {
+    List<Place> places = List<Place>();
 
-    double width = 300;
-    double height = 350;
-    double left = 10;
-    IconData iconData = Icons.favorite_border;
-
-    placesListSnapshot.forEach((p) {
-      placesCard.add(CardImageWithFabIcon(
-          pathImage: p.data['urlImage'],
-          width: width,
-          height: height,
-          left: left,
-          onPressedFabIcon: () {
-            //Contendra la accion al precional el boton
-            likePlace(p.documentID);//Mandamos llamar al metodo likePlace y le enviamos el docuemnto
-          },
-          iconData: iconData
-      ));
+    placesListSnapshot.forEach((p)  {
+      Place place = Place(id: p.documentID, name: p.data["name"], description: p.data["description"],
+          urlImage: p.data["urlImage"],likes: p.data["likes"]
+      );
+      List usersLikedRefs =  p.data["usersLiked"];
+      place.liked = false;
+      usersLikedRefs?.forEach((drUL){
+        if(user.uid == drUL.documentID){
+          place.liked = true;
+        }
+      });
+      places.add(place);
     });
-
-    return placesCard;
+    return places;
 
   }
 
-  Future likePlace(String idPlace) async {
-    await _db.collection(PLACES).document(idPlace).get()
+  Future likePlace(Place place, String uid) async {
+    await _db.collection(PLACES).document(place.id).get()
         .then((DocumentSnapshot ds) {
-       int likes = ds.data['likes'];
-       //seteamos los datos
-       _db.collection(PLACES).document(idPlace)
-           .updateData({//El metodo updateData va a actualizar el key likes
+      int likes = ds.data["likes"];
 
-         'likes': likes+1//incremento los likes
-
-       });
-        
+      _db.collection(PLACES).document(place.id)
+          .updateData({ //El metodo updateData va a actualizar el key likes
+        'likes': place.liked ? likes + 1 : likes - 1, //incremento los likes
+        'usersLiked':
+        place.liked ?
+        FieldValue.arrayUnion([_db.document("${USERS}/${uid}")]) :
+        FieldValue.arrayRemove([_db.document("${USERS}/${uid}")])
+      });
     });
   }
-
-
 }

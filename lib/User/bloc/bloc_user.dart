@@ -46,7 +46,9 @@ class UserBloc implements Bloc {
   * para que la ventana de lugares siempre este escuchando y se refresque automaticamente cuando alguien agrege un nuevo lugar*/
   Stream<QuerySnapshot> placesListStream = Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();//Se solicita la fotografia que este en la base de datos Firestore en la coleccion Places
   Stream<QuerySnapshot> get placesStream => placesListStream;//Estaremos escuchando el objeto placesStream
-  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  //List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  List<Place> buildPlaces(List<DocumentSnapshot> placesListSnapshot, User user) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot, user);
+  Future likePlace(Place place, String uid) => _cloudFirestoreRepository.likePlace(place,uid);
 
 
   Stream<QuerySnapshot> myPlacesListStream(String uid) => Firestore.instance.collection(CloudFirestoreAPI().PLACES)//Comenzamos con nuestro filtro
