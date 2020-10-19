@@ -90,6 +90,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     width: 350,
                     height: 250,
                     left: 0,
+                    internet: false,
                   ),
                 ),
                 Container(//Este container contendra las los TextField del titulo

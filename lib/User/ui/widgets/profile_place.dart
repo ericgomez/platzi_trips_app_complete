@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'profile_place_info.dart';
@@ -21,7 +22,8 @@ class ProfilePlace extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(place.urlImage)//Cambiamos a NetworkImage por que lo que nos trae place es una Url
+              //image: NetworkImage(place.urlImage)//Cambiamos a NetworkImage por que lo que nos trae place es una Url
+              image: CachedNetworkImageProvider(place.urlImage)//CachedNetworkImageProvider permitirá utilizar el cache para optimizar la carga de las imagenes
           ),
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,

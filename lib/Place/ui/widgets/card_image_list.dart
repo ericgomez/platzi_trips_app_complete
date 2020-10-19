@@ -80,7 +80,7 @@ class _CardImageList extends State<CardImageList> {
           onPressedFabIcon: (){
             setLiked(place);
           },
-          //internet: true,
+          internet: true,//Bandera que nos permitira saber si la imagen viene desde internet
         );
       }).toList(),
     );

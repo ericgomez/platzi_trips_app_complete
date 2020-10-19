@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CardImageWithFabIcon extends StatelessWidget {
 
@@ -11,6 +12,7 @@ class CardImageWithFabIcon extends StatelessWidget {
   final String pathImage;//Declaramos como final los elementos que van a ser requeridos
   final VoidCallback onPressedFabIcon;//Declaramos como final los elementos que van a ser requeridos
   final IconData iconData;
+  bool internet = true;//lag que nos permita distinguir si la imagen que mostraremos en el Card viene de internet o es un Asset
   
   //Creamos nuestro constructor
   CardImageWithFabIcon({
@@ -21,6 +23,7 @@ class CardImageWithFabIcon extends StatelessWidget {
     @required this.height,
     @required this.onPressedFabIcon,
     @required this.iconData,
+    this.internet,
     this.left
   });
 
@@ -40,11 +43,12 @@ class CardImageWithFabIcon extends StatelessWidget {
             fit: BoxFit.cover,
             //image: NetworkImage(pathImage)//NetworkImage(pathImage) para mostrar la imagen atravez de interner o AssetImage(pathImage) de manera local
             //image: pathImage.contains('assets') ? AssetImage(pathImage) : FileImage(new File(pathImage)),
-            image: pathImage.contains('http')? NetworkImage(pathImage): FileImage(File(pathImage))
+            image: internet?CachedNetworkImageProvider(pathImage):AssetImage(pathImage)//CachedNetworkImageProvider permitirá utilizar el cache para optimizar la carga de las imagenes
+            //image: pathImage.contains('http')? NetworkImage(pathImage): FileImage(File(pathImage))
         ),
             //Asemos que la imagen sea redonda
             borderRadius: BorderRadius.all(Radius.circular(10)),
-        shape: BoxShape.rectangle,//Haacemos que la imagen sea rectangular
+        //shape: BoxShape.rectangle,//Haacemos que la imagen sea rectangular
         boxShadow: <BoxShadow>[//Agregamos una sombra
           BoxShadow(
             color: Colors.black38,
