@@ -11,6 +11,7 @@ import 'package:platzi_trips_app/User/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:platzi_trips_app/User/repository/cloud_firestore_api.dart';
 import 'package:platzi_trips_app/User/repository/cloud_firestore_repository.dart';
+import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
 class UserBloc implements Bloc {
 
@@ -44,6 +45,9 @@ class UserBloc implements Bloc {
   * para que la ventana de lugares siempre este escuchando y se refresque automaticamente cuando alguien agrege un nuevo lugar*/
   Stream<QuerySnapshot> placesListStream = Firestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots();//Se solicita la fotografia que este en la base de datos Firestore en la coleccion Places
   Stream<QuerySnapshot> get placesStream => placesListStream;//Estaremos escuchando el objeto placesStream
+
+  //Mapeamos el metodo
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
   final _firebaseStorageRepository = FirebaseStorageRepository();
   Future<StorageUploadTask> uploadFile(String path, File image) => _firebaseStorageRepository.uploadFile(path, image);

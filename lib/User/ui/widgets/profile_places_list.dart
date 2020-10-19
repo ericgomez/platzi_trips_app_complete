@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
-import 'profile_place.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 
 class ProfilePlacesList extends StatelessWidget {
@@ -43,13 +42,18 @@ class ProfilePlacesList extends StatelessWidget {
               return CircularProgressIndicator();
             case ConnectionState.done:
               return Column(
-                children: [
-                  
-                ],
+                children: userBloc.buildPlaces(snapshot.data.documents),
               );
             case ConnectionState.active:
+              return Column(
+                children: userBloc.buildPlaces(snapshot.data.documents),
+              );
             case ConnectionState.none:
+              return CircularProgressIndicator();
             default:
+              return Column(
+                children: userBloc.buildPlaces(snapshot.data.documents),
+              );
           }
         }
       ),

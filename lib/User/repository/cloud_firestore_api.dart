@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
+import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
 class CloudFirestoreAPI {
 
@@ -37,8 +38,9 @@ class CloudFirestoreAPI {
       refPlaces.add({
         //Optenemos los datos del formulario
         'name': place.name,
-        'descripion': place.description,
+        'description': place.description,
         'like': place.likes,
+        'urlImage': place.urlImage,
         'userOwner': _db.document("${USERS}/${user.uid}")//Esta es la forma como asignamos referencias
       }).then((DocumentReference dr) {
         dr.get().then((DocumentSnapshot snapshot) {//Obtengo la Photo de ese lugar
@@ -53,5 +55,25 @@ class CloudFirestoreAPI {
     });
 
   }
+
+  //Procesar los datos de Firebase
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {//recibiremos un tipos de dato placesListSnapshot
+    List<ProfilePlace> profilePlaces = List<ProfilePlace>();
+    placesListSnapshot.forEach((p) {//Obtenemos los datos de cada lugar o Places
+
+      profilePlaces.add(ProfilePlace(
+        Place(//Puedo acceder a los datos que estan en FireBase con p.data
+            name: p.data['name'],
+            description: p.data['description'],
+            urlImage: p.data['urlImage'])
+
+      ));
+
+    });
+    //Devolvemos la lista profilePlaces
+    return profilePlaces;
+
+  }
+
 
 }
