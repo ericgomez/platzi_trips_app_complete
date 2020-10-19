@@ -47,7 +47,7 @@ class UserBloc implements Bloc {
   Stream<QuerySnapshot> get placesStream => placesListStream;//Estaremos escuchando el objeto placesStream
 
   //Mapeamos el metodo
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
 
   Stream<QuerySnapshot> myPlacesListStream(String uid) => Firestore.instance.collection(CloudFirestoreAPI().PLACES)//Comenzamos con nuestro filtro
       .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/${uid}"))//Este metodo me conveirte la cadana automaticamente a un Strings

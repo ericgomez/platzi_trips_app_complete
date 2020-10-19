@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
@@ -57,7 +59,7 @@ class CloudFirestoreAPI {
   }
 
   //Procesar los datos de Firebase
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {//recibiremos un tipos de dato placesListSnapshot
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) {//recibiremos un tipos de dato placesListSnapshot
     List<ProfilePlace> profilePlaces = List<ProfilePlace>();
     placesListSnapshot.forEach((p) {//Obtenemos los datos de cada lugar o Places
 
@@ -75,6 +77,29 @@ class CloudFirestoreAPI {
     //Devolvemos la lista profilePlaces
     return profilePlaces;
 
+  }
+
+  //Metodo para obtener la lista de places hacemos el metodo Card_image_list lo mas generico posible
+  List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<CardImageWithFabIcon> placesCard = List<CardImageWithFabIcon>();
+
+    double width = 300;
+    double height = 350;
+    double left = 10;
+    IconData iconData = Icons.favorite_border;
+
+    placesListSnapshot.forEach((p) {
+      placesCard.add(CardImageWithFabIcon(
+          pathImage: p.data['urlImage'],
+          width: width,
+          height: height,
+          left: left,
+          onPressedFabIcon: () {
+            //Contendra la accion al precional el boton
+          },
+          iconData: iconData
+      ));
+    });
   }
 
 
