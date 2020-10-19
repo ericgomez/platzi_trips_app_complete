@@ -49,6 +49,10 @@ class UserBloc implements Bloc {
   //Mapeamos el metodo
   List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
+  Stream<QuerySnapshot> myPlacesListStream(String uid) => Firestore.instance.collection(CloudFirestoreAPI().PLACES)//Comenzamos con nuestro filtro
+      .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/${uid}"))//Este metodo me conveirte la cadana automaticamente a un Strings
+      .snapshots();
+
   final _firebaseStorageRepository = FirebaseStorageRepository();
   Future<StorageUploadTask> uploadFile(String path, File image) => _firebaseStorageRepository.uploadFile(path, image);
 
