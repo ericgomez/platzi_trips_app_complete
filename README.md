@@ -1,16 +1,12 @@
-# platzi_trips_app
+# Clases del Curso Avanzado de Flutter
 
-A new Flutter application.
+#### Proyecto del curso
+![proyect](https://static.platzi.com/media/landing-projects/FLUTTER.gif)
 
-## Getting Started
+## Platzi Trips
+En este curso le daremos vida a la aplicación que desarrollamos en el Curso de Flutter. Implementaremos autenticación con Google a través de Firebase, daremos persistencia a nuestros datos usando la base de datos Realtime de Cloud Firestore, aprenderás manejar al hardware en iOS y Android accediendo a la cámara del dispositivo, tomando fotos y después subirlas al Firebase Storage. Construiremos una aplicación móvil para Android &amp; iOS totalmente conectada a Firebase.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
